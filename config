@@ -80,6 +80,11 @@ exec_always sudo killall -9 at-spi2-regystryd
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
 
+exec --no-startup-id i3-msg 'workspace 2:mail; exec /usr/bin/protonmail-bridge'
+exec --no-startup-id i3-msg 'workspace 2:mail; exec alacritty -e neomutt'
+exec --no-startup-id i3-msg 'workspace 1:web; exec brave'
+exec --no-startup-id i3-msg 'workspace 3:code; exec emacs'
+
 # change focus
 bindsym $mod+Left focus left
 bindsym $mod+Right focus right
@@ -130,7 +135,7 @@ bindsym $mod+F3 exec setxkbmap ru
 bindsym $mod+F4 exec setxkbmap fi
  
 #defining workspaces names
-set $w1 1:www
+set $w1 1:web
 set $w2 2:mail
 set $w3 3:code
 set $w4 4:term
