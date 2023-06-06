@@ -58,7 +58,8 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty -e zsh
 
 # kill focused window
-bindsym $mod+Shift+q kill
+#bindsym $mod+Shift+q kill
+bindcode $mod+Shift+24 kill
 
 # lock the screen
 bindsym $mod+F12 exec setxkbmap us && i3lock --color=000000
@@ -81,10 +82,14 @@ exec_always sudo killall -9 at-spi2-regystryd
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
 
-exec --no-startup-id i3-msg 'workspace 2:mail; exec /usr/bin/protonmail-bridge'
-exec --no-startup-id i3-msg 'workspace 2:mail; exec alacritty -e neomutt'
-exec --no-startup-id i3-msg 'workspace 1:web; exec brave'
-exec --no-startup-id i3-msg 'workspace 3:code; exec emacs'
+exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
+exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
+exec --no-startup-id sh -c 'sleep 7; i3-msg "workspace $w2; exec /usr/bin/alacritty -e neomutt"'
+exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w3; exec emacs"'
+
+for_window [class="Brave"] move to workspace $w1
+for_window [class="Emacs"] move to workspace $w3
+for_window [class="Proton Mail Bridge"] move to workspace $w2
 
 # change focus
 bindsym $mod+Left focus left
