@@ -74,18 +74,18 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-exec_always setxkbmap -layout "us,ru" setxkbmap -option "grp:caps_toggle,grp_led:caps"
 exec_always xinput set-prop "DualPoint Stick" "libinput Accel Speed" 0.8
 exec_always sudo service bluetooth start
 exec_always sudo killall -9 console-kit-daemon
 exec_always sudo killall -9 at-spi2-regystryd 
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
+exec_always synclient TouchpadOff=1
 
 exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
 exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
-exec --no-startup-id sh -c 'sleep 7; i3-msg "workspace $w2; exec /usr/bin/alacritty -e neomutt"'
 exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w3; exec emacs"'
+exec --no-startup-id sh -c 'sleep 5; i3-msg "workspace $w8; exec telegram"'
 
 for_window [class="Brave"] move to workspace $w1
 for_window [class="Emacs"] move to workspace $w3
@@ -147,10 +147,20 @@ set $w3 3:code
 set $w4 4:term
 set $w5 5:docs
 set $w6 6:todo
-set $w7 7:mc
+set $w7 7:graphics
 set $w8 8:im
 set $w9 9:vm
-set $w10 10:media
+set $w10 10:music
+set $w11 11:www
+set $w12 12:conf
+set $w13 13:net
+set $w14 14:logs
+set $w15 15:ssh
+set $w16 16:top
+set $w17 17:ssh
+set $w18 18:media
+set $w19 19:call
+set $w20 20:tmp
 
 
 # switch to workspace
@@ -164,6 +174,16 @@ bindsym $mod+7 workspace $w7
 bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
+bindsym $mod2+1 workspace $w11
+bindsym $mod2+2 workspace $w12
+bindsym $mod2+3 workspace $w13
+bindsym $mod2+4 workspace $w14
+bindsym $mod2+5 workspace $w15
+bindsym $mod2+6 workspace $w16
+bindsym $mod2+7 workspace $w17
+bindsym $mod2+8 workspace $w18
+bindsym $mod2+9 workspace $w19
+bindsym $mod2+0 workspace $w20
 
 
 # move focused container to workspace
@@ -177,6 +197,16 @@ bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod2+Shift+1 move container to workspace $w11
+bindsym $mod2+Shift+2 move container to workspace $w12
+bindsym $mod2+Shift+3 move container to workspace $w13
+bindsym $mod2+Shift+4 move container to workspace $w14
+bindsym $mod2+Shift+5 move container to workspace $w15
+bindsym $mod2+Shift+6 move container to workspace $w16
+bindsym $mod2+Shift+7 move container to workspace $w17
+bindsym $mod2+Shift+8 move container to workspace $w18
+bindsym $mod2+Shift+9 move container to workspace $w19
+bindsym $mod2+Shift+0 move container to workspace $w20
 
 
 set $exec_i3_groups exec --no-startup-id i3-workspace-groups
