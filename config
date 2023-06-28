@@ -66,7 +66,7 @@ bindsym $mod+F12 exec setxkbmap us && i3lock --color=000000
 
 # start dmenu (a program launcher)
 # Bind mod+d for launching rofi run menu
-bindcode $mod+40 exec --no-startup-id "rofi -combi-modi drun,run -show combi -bg '#D8DEE9' -fg '#282828'
+bindcode $mod+40 exec --no-startup-id "setxkbmap us && rofi -combi-modi drun,run -show combi -bg '#D8DEE9' -fg '#282828'
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -81,10 +81,11 @@ exec_always sudo killall -9 at-spi2-regystryd
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
 exec_always synclient TouchpadOff=1
+exec_always feh --bg-scale ~/Pictures/wallpapers/innsbruck.jpg
 
 exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
 exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
-exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w3; exec emacs"'
+exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w3; exec /usr/local/bin/emacs"'
 exec --no-startup-id sh -c 'sleep 5; i3-msg "workspace $w8; exec telegram"'
 
 for_window [class="Brave"] move to workspace $w1
@@ -122,9 +123,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+bindcode $mod+39 layout stacking
+bindcode $mod+28 layout tabbed   
+bindcode $mod+26 layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -280,7 +281,7 @@ bar {
 	}
    
    strip_workspace_numbers yes
-   position top
+   position bottom
    font pango: Berkeley Mono Regular 11
    wheel_up_cmd nop
    wheel_down_cmd nop
