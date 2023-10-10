@@ -80,12 +80,10 @@ exec_always sudo killall -9 console-kit-daemon
 exec_always sudo killall -9 at-spi2-regystryd 
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
-exec_always synclient TouchpadOff=1
-exec_always feh --bg-scale ~/Pictures/wallpapers/innsbruck.jpg
+exec_always xinput set-prop $(xinput list | grep "SynPS/2 Synaptics TouchPad" | grep -oP 'id=\K\d+') "Device Enabled" 0
 
 exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
 exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
-exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w3; exec /usr/local/bin/emacs"'
 exec --no-startup-id sh -c 'sleep 5; i3-msg "workspace $w8; exec telegram"'
 
 for_window [class="Brave"] move to workspace $w1
@@ -140,6 +138,8 @@ bindsym $mod+F1 exec setxkbmap us
 bindsym $mod+F2 exec setxkbmap by
 bindsym $mod+F3 exec setxkbmap ru
 bindsym $mod+F4 exec setxkbmap fi
+
+
  
 #defining workspaces names
 set $w1 1:web
@@ -281,7 +281,7 @@ bar {
 	}
    
    strip_workspace_numbers yes
-   position bottom
+   position top
    font pango: Berkeley Mono Regular 11
    wheel_up_cmd nop
    wheel_down_cmd nop
