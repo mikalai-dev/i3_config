@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-LNG=$(~/.config/i3/bin/xkblayout-state print %s | awk '{print toupper($0)}')
+LNG=$(setxkbmap -print | awk -F"+" '/xkb_symbols/ {print toupper($2)}')
 echo "[ ${LNG} ]"
