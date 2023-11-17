@@ -149,7 +149,7 @@ set $w4 4:term
 set $w5 5:kb
 set $w6 6:todo
 set $w7 7:graphics
-set $w8 8:tg
+set $w8 8:msg
 set $w9 9:vm
 set $w10 10:music
 set $w11 11:docs
