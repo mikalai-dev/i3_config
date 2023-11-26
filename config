@@ -74,7 +74,9 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-exec_always xinput set-prop "DualPoint Stick" "libinput Accel Speed" 0.8
+exec_always xinput set-prop "DualPoint Stick" "libinput Accel Speed" 1.0
+exec_always xinput set-prop "MX Master 3S" "libinput Accel Speed" 1.0
+
 exec_always sudo service bluetooth start
 exec_always sudo killall -9 console-kit-daemon
 exec_always sudo killall -9 at-spi2-regystryd 
