@@ -15,8 +15,6 @@ set $mod2 Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono Italic 9
-#font pango:Iosevka Extended 9
 font pango:BerkeleyMono Regular 9
 # BeforE i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -24,8 +22,9 @@ font pango:BerkeleyMono Regular 9
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
-set $c_foreground #ebdbb2
-set $c_background #282822
+set $c_foreground #a9b1d6
+set $c_background #1a1b26
+set $c_background_alt #13141c
 set $c_cursor #fff000
 set $c_black_d #1d2021
 set $c_black_l #665c54
@@ -44,12 +43,9 @@ set $c_magenta_l #d3869b
 set $c_cyan_d #689d6a
 set $c_cyan_l #8ec07c
 
-#class					background?		border			text			split
-client.focused			$c_black_l		$c_black_l		$c_white_d		$c_white_d
-client.focused_inactive	$c_background	$c_background	$c_black_l		$c_black_d
-client.unfocused		$c_black_d		$c_background	$c_white_d		$c_black_d
-client.urgent			$c_red_d		$c_red_d		$c_foreground	$c_red_d
-client.background		$c_background
+client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
+client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
+client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -79,10 +75,11 @@ exec_always xinput set-prop "MX Master 3S" "libinput Accel Speed" 1.0
 
 exec_always sudo service bluetooth start
 exec_always sudo killall -9 console-kit-daemon
-exec_always sudo killall -9 at-spi2-regystryd 
+exec_always sudo killall -9 at-spi2-regystryd
 exec_always xset r rate 190 20
 exec_always xrandr --output eDP --brightness 0.9
 exec_always xinput set-prop $(xinput list | grep "SynPS/2 Synaptics TouchPad" | grep -oP 'id=\K\d+') "Device Enabled" 0
+exec_always feh --bg-scale ~/.config/i3/imgs/hallstatt.jpg
 
 exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
 exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
@@ -98,7 +95,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Up focus up
 bindsym $mod+Down focus down
 
-#keybinding for toggling the touchpad 
+#keybinding for toggling the touchpad
 bindsym $mod+F7 exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*0')
 
 # move focused window
@@ -124,7 +121,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindcode $mod+39 layout stacking
-bindcode $mod+28 layout tabbed   
+bindcode $mod+28 layout tabbed
 bindcode $mod+26 layout toggle split
 
 # toggle tiling / floating
@@ -142,7 +139,7 @@ bindsym $mod+F3 exec setxkbmap ru
 bindsym $mod+F4 exec setxkbmap fi
 
 
- 
+
 #defining workspaces names
 set $w1 1:web
 set $w2 2:mail
@@ -273,36 +270,18 @@ for_window [class="^.*"] border pixel 1
 bar {
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	colors {
-        #                  border  bground text
-		background #282822
-                separator #282822
-		focused_workspace  #282828 #282828 #2EFF2F
-		active_workspace   #282822 #282822 #dbae93
-		inactive_workspace #282822 #282822 #766c64
-		urgent_workspace   #fb4934 #282822 #ebdbb2
+                #                  border  bground text
+		background #1a1b26
+		focused_workspace  #1a1b26 #1a1b26 #a9b1d6
+		active_workspace   #1a1b26 #1a1b26 #2EFF2F
+		inactive_workspace #1a1b26 #1a1b26 #766c64
+		urgent_workspace   #1a1b26 #1a1b26 #ebdbb2
 	}
-   
+
    strip_workspace_numbers yes
    position top
-   font pango: Berkeley Mono Regular 11
+   font pango: Dejavu Sans Mono 10
    wheel_up_cmd nop
    wheel_down_cmd nop
 }
-
-set $base00 #fdf6e3
-set $base01 #eee8d5
-set $base02 #93a1a1
-set $base03 #839496
-set $base04 #657b83
-set $base05 #586e75
-set $base06 #073642
-set $base07 #002b36
-set $base08 #dc322f
-set $base09 #cb4b16
-set $base0A #b58900
-set $base0B #859900
-set $base0C #2aa198
-set $base0D #268bd2
-set $base0E #6c71c4
-set $base0F #d33682
 
