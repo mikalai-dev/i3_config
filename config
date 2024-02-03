@@ -82,7 +82,6 @@ exec_always xinput set-prop $(xinput list | grep "SynPS/2 Synaptics TouchPad" | 
 exec_always feh --bg-scale ~/.config/i3/imgs/hallstatt.jpg
 
 exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace $w1; exec brave-browser"'
-exec --no-startup-id sh -c 'sleep 4; i3-msg "workspace $w2; exec /usr/bin/protonmail-bridge"'
 exec --no-startup-id sh -c 'sleep 5; i3-msg "workspace $w8; exec telegram"'
 
 for_window [class="Brave"] move to workspace $w1
@@ -275,7 +274,7 @@ bar {
 		focused_workspace  #1a1b26 #1a1b26 #a9b1d6
 		active_workspace   #1a1b26 #1a1b26 #2EFF2F
 		inactive_workspace #1a1b26 #1a1b26 #766c64
-		urgent_workspace   #1a1b26 #1a1b26 #ebdbb2
+        urgent_workspace   #FF8101 #1a1b26 #FF8101
 	}
 
    strip_workspace_numbers yes
