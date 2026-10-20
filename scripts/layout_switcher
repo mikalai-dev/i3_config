@@ -1,0 +1,34 @@
+#!/bin/bash
+
+layouts=(
+  "us|us|"
+  "by|by|"
+  "ru|ru"
+  "fi|fi|"
+  "lv (apostrophe)|lv|apostrophe"
+)
+
+# Build the list of layout names for the menu
+choices=()
+for entry in "${layouts[@]}"; do
+  IFS='|' read -r label layout variant <<< "$entry"
+  choices+=("$label")
+done
+
+# Show menu
+chosen=$(printf "%s\n" "${choices[@]}" | rofi -dmenu -p "Keyboard layout:")
+
+# Apply selected layout
+if [[ -n "$chosen" ]]; then
+  for entry in "${layouts[@]}"; do
+    IFS='|' read -r label layout variant <<< "$entry"
+    if [[ "$chosen" == "$label" ]]; then
+      if [[ -n "$variant" ]]; then
+        setxkbmap -layout "$layout" -variant "$variant"
+      else
+        setxkbmap -layout "$layout"
+      fi
+      break
+    fi
+  done
+fi
