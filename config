@@ -133,6 +133,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 bindsym $mod+F2 exec ~/.config/i3/scripts/layout_switcher
+bindsym $mod+F4 exec ~/.config/i3/scripts/screenshoter
 
 #defining workspaces names
 set $w1 1:web

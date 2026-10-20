@@ -1,0 +1,17 @@
+DIR="$HOME/Pictures/Screenshots"
+
+# Проверяем, существует ли директория, и создаём её при необходимости
+if [ ! -d "$DIR" ]; then
+    mkdir -p "$DIR"
+fi
+
+FILE="$DIR/screenshot_$(date +%d_%m_%Y_%H_%M_%S).jpg"
+
+if import "$FILE"; then
+    basename "$FILE" | osd_cat \
+    --delay=5 \
+    --align=center \
+    --pos=top \
+    --font="-*-*-bold-r-*-*-66-*-*-*-*-*-*-*" \
+    --color=red
+fi
